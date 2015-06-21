@@ -14,6 +14,8 @@ AUTHENTICATION_BACKENDS = (
     'applications.users.backends.PhoneCheckBackend',
 )
 
+MAX_GRADE = config.get('max_grade', 1)
+
 LOGIN_URL = "/users/login/"
 
 AUTH_USER_MODEL = "users.User"
