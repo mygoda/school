@@ -27,7 +27,6 @@ class Term(models.Model):
         (END_TEXT, u'期末考试'),
     )
 
-
     name = models.CharField(u'考试名', max_length=128, blank=True, null=True)
     type = models.CharField(u'考试类型', max_length=128, choices=TEXT_LIST, default=NORMAL_TEST)
     subject = models.ForeignKey(SubjectsTemplate, verbose_name=u'科目', null=True, blank=True)
