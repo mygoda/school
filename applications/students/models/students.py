@@ -18,14 +18,14 @@ class Students(models.Model):
         db_name = 'students_students'
         verbose_name = verbose_name_plural = "学生班级关系"
 
-    student = models.ForeignKey(auth_user_model, verbose_name=u'学生', blank=True, null=True)
+    user = models.ForeignKey(auth_user_model, verbose_name=u'学生', blank=True, null=True)
     school_class = models.ForeignKey(SchoolClass, verbose_name=u'班级', blank=True, null=True)
 
 
     created_at = models.DateTimeField(u'创建时间', default=datetime_now(), blank=True, null=True)
 
     def __unicode__(self):
-        return unicode(self.student.username)
+        return unicode(self.user.username)
 
 
 class StudentGrade(models.Model):

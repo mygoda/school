@@ -19,9 +19,6 @@ class SchoolClass(models.Model):
     team = models.IntegerField(u'班', blank=True, null=True)
     number = models.IntegerField(u'班级人数', blank=True, null=True)
 
-    start = models.DateField(u'开始日期', blank=True, null=True, default=datetime_now())
-    end = models.DateField(u'开始日期', blank=True, null=True, default=datetime_now())
-
     created_at = models.DateTimeField(u'创建时间', blank=True, null=True, default=datetime_now())
 
     def __unicode__(self):
