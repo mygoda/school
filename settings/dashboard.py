@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# __author__ = xutao
+# __author__ = chenchiyuan
 
 from __future__ import division, unicode_literals, print_function
 
@@ -35,6 +35,61 @@ class CustomIndexDashboard(Dashboard):
         ))
 
         self.children.append(modules.ModelList(
+            u"会议管理",
+            column=1,
+            collapsible=True,
+            models=(
+                'applications.meeting.models.meeting.Meeting',
+                'applications.meeting.models.meeting.Ticket',
+                'applications.meeting.models.meeting.MeetingBank',
+            )
+        ))
+
+        self.children.append(modules.ModelList(
+            u"门票管理",
+            column=2,
+            collapsible=True,
+            models=(
+                'applications.meeting.models.meeting.Agent',
+                'applications.meeting.models.meeting.TicketTemplate',
+                'applications.meeting.models.meeting.AgentTicketShip',
+                'applications.meeting.models.order.TicketCheckInHistory',
+            )
+        ))
+
+
+        self.children.append(modules.ModelList(
+            u"订单管理",
+            column=1,
+            collapsible=True,
+            models=(
+                'applications.meeting.models.order.ShoppingCart',
+                'applications.meeting.models.order.Order',
+                'applications.meeting.models.code.Code',
+            )
+        ))
+
+        self.children.append(modules.ModelList(
+            u"预约管理",
+            column=1,
+            collapsible=True,
+            models=(
+                'applications.meeting.models.schedule.Schedule',
+                'applications.meeting.models.schedule.UserSchedule',
+            )
+        ))
+
+        self.children.append(modules.ModelList(
+            u"订单",
+            column=2,
+            collapsible=True,
+            models=(
+                'applications.order.models.Trade',
+                'applications.meeting.models.order.Ticket',
+            )
+        ))
+
+        self.children.append(modules.ModelList(
             u"消息管理",
             column=2,
             collapsible=True,
@@ -43,6 +98,15 @@ class CustomIndexDashboard(Dashboard):
             )
         ))
 
+        self.children.append(modules.ModelList(
+            u"门票打印",
+            column=2,
+            collapsible=True,
+            models=(
+                'applications.meeting.models.meeting.PrintTemplate',
+                'applications.meeting.models.meeting.MeetingTemplateShip',
+            )
+        ))
 
         self.children.append(modules.ModelList(
             u"系统管理",
@@ -65,3 +129,31 @@ class CustomIndexDashboard(Dashboard):
             )
         ))
 
+        self.children.append(modules.ModelList(
+            u"调查问卷",
+            column=3,
+            collapsible=True,
+            models=(
+                'applications.meeting.models.survey.MeetingSurvey',
+                'applications.meeting.models.survey.ClassSurvey',
+            )
+        ))
+
+        self.children.append(modules.ModelList(
+            u"证书",
+            column=3,
+            collapsible=True,
+            models=(
+                'applications.meeting.models.certificate.Certificate',
+                'applications.meeting.models.certificate.UserCertificate',
+            )
+        ))
+
+        # self.children.append(modules.ModelList(
+        #     u"微信订单信息",
+        #     column=3,
+        #     collapsible=True,
+        #     models=(
+        #         'applications.payment.models.WeChatPayment',
+        #     )
+        # ))

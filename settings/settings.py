@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# __author__ = xutao
+# __author__ = chenchiyuan
 
 from __future__ import division, unicode_literals, print_function
 import os
@@ -28,7 +28,7 @@ APP_HOST_NAME = config.get("django", "app_host_name")
 SYSTEM_NAME = config.get("db", "db_name")
 
 ADMINS = (
-    ('Shadow', 'xutao03@gmail.com'),
+    ('Shadow', 'chenchiyuan03@gmail.com'),
 )
 
 EMAIL_TO = config.get("settings", "email_to")
@@ -123,6 +123,11 @@ INSTALLED_APPS = (
     'applications.users',
     'applications.ueditor',
     'applications.weixin',
+    'applications.teacher',
+    'applications.parents',
+    'applications.grade',
+    'applications.activity',
+    'applications.api',
 
 
     'django.contrib.admin',
@@ -202,7 +207,7 @@ LOGGING = {
 
 INTERNAL_IPS = ['127.0.0.1']
 GRAPPELLI_INDEX_DASHBOARD = 'settings.dashboard.CustomIndexDashboard'
-GRAPPELLI_ADMIN_TITLE = u"校园管理系统"
+GRAPPELLI_ADMIN_TITLE = u"青橙会议管理系统"
 IMG_AVAILABLE_HOSTS = ['zoneke-img.b0.upaiyun.com', ]
 
 UPYUN_BUCKET = config.get("upyun", "UPYUN_BUCKET")
