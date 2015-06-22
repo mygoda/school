@@ -2,9 +2,9 @@
 # __author__ = xutao
 
 from __future__ import division, unicode_literals, print_function
-
 from django.db import models
 from django.conf import settings
+from applications.grade.models.term import Term
 from applications.teacher.models.subjects import SubjectsTemplate
 from applications.teacher.models.schoolClass import SchoolClass
 from libs.datetimes import datetime_now
@@ -60,5 +60,19 @@ class SchoolClassTeacherShip(models.Model):
 
     created_at = models.DateTimeField(u'创建时间', blank=True, null=True, default=datetime_now())
 
+
+class TeacherTermShip(models.Model):
+    class Meta:
+        app_label = u"teacher"
+        db_table = u'teacher_term_ship'
+        verbose_name = verbose_name_plural = u"教师考试关系"
+
+    teacher = models.ForeignKey(Teacher, verbose_name=u'教师', blank=True, null=True)
+    term = models.ForeignKey(Term, verbose_name=u'考试', blank=True, null=True)
+
+    created_at = models.DateTimeField(u'创建时间', blank=True, null=True, default=datetime_now())
+
+    def __unicode__(self):
+        return self.id
 
 

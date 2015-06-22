@@ -19,5 +19,9 @@ URL_UUID = "(?P<id>[^//]+)"
 
 TICKET_ID = "(?P<ticket_id>[0-9]+)"
 
+TEACHER_ID = "(?P<teacher_id>[0-9]+)"
+
+
+
 
 
