@@ -3,6 +3,7 @@
 
 from __future__ import division, unicode_literals, print_function
 from applications.api.service.base import ServiceBase
+from applications.students.models.students import Students
 from applications.teacher.models.teacher import TeacherTermShip
 
 
@@ -19,4 +20,18 @@ class TeacherTermService(ServiceBase):
             "name": obj.term.name,
             "type": obj.term.type,
             "school_class": obj.term.school_class,
+        }
+
+
+class QuerysetStudentByTermService(ServiceBase):
+    model = Students
+
+    queryset_name = 'students'
+
+    obj_name = 'student'
+
+    def obj_to_json(self, obj):
+        return {
+            "id": obj.id,
+            "username": obj.user.username
         }

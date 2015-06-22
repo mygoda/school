@@ -22,7 +22,7 @@ class SchoolClass(models.Model):
     created_at = models.DateTimeField(u'创建时间', blank=True, null=True, default=datetime_now())
 
     def __unicode__(self):
-        return u"%s年%s班" %(self.grade, self.team)
+        return u"%s年%s班" % (self.grade, self.team)
 
     @classmethod
     def rise_grade(cls):

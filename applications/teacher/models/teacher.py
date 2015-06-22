@@ -45,11 +45,18 @@ class SchoolClassTeacherShip(models.Model):
 
     created_at = models.DateTimeField(u'创建时间', blank=True, null=True, default=datetime_now())
 
+
     def __unicode__(self):
         return self.id
 
+    def to_json(self):
+        return {
+            "id": self.id,
+            "class_name": self.school_class.__unicode__()
+        }
 
-class SchoolClassTeacherShip(models.Model):
+
+class SchoolClassMasterShip(models.Model):
     class Meta:
         app_label = u"teacher"
         db_table = u'teacher_master_ship'
@@ -59,6 +66,7 @@ class SchoolClassTeacherShip(models.Model):
     school_class = models.ForeignKey(SchoolClass, verbose_name=u'班级', blank=True, null=True)
 
     created_at = models.DateTimeField(u'创建时间', blank=True, null=True, default=datetime_now())
+
 
 
 class TeacherTermShip(models.Model):
