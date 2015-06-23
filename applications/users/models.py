@@ -24,7 +24,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(u"邮箱", max_length=255, default="", blank=True, null=True)
     username = models.CharField(u"用户名", max_length=255, default="", blank=True, null=True)
 
-    student_no = models.CharField(u"学员号", max_length=128, default='', blank=True, null=True)
+    student_no = models.CharField(u"学号", max_length=128, default='', blank=True, null=True)
 
     avatar = models.CharField(u"头像", max_length=255, blank=True, null=True)
     phone = models.CharField(u"手机号", max_length=24, blank=True, null=True, default="")

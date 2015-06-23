@@ -18,9 +18,11 @@ class TeacherMessage(models.Model):
 
     SCHOOL = 0
     PARENTS = 1
+    SYSTEM = 2
     MESSAGE_TYPE = (
         (SCHOOL, u'学生'),
         (PARENTS, u'家长'),
+        (SYSTEM, u'系统')
     )
 
     content = models.CharField(u'通知内容', max_length=65536, null=True, blank=True)
@@ -40,3 +42,4 @@ class TeacherMessage(models.Model):
     @property
     def get_time(self):
         return datetime_to_str(self.created_at, "%H:%M")
+

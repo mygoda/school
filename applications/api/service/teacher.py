@@ -4,6 +4,7 @@
 from __future__ import division, unicode_literals, print_function
 from applications.api.service.base import ServiceBase
 from applications.teacher.models.message import TeacherMessage
+from applications.teacher.models.teacher import SchoolClassTeacherShip
 
 
 class TeacherMessageService(ServiceBase):

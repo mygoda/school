@@ -31,5 +31,13 @@ class SchoolClass(models.Model):
             item.grade += 1
             item.save()
 
+    def to_json(self):
+        return {
+            "id": self.id,
+            "grade": self.grade,
+            "team": self.team,
+            "number": self.number,
+        }
+
 
 

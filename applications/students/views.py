@@ -2,8 +2,9 @@
 # __author__ = xutao
 
 from __future__ import division, unicode_literals, print_function
-from django.http import HttpResponseRedirect
 from django.views.generic import TemplateView
 from django.template import RequestContext
+
+
 
 

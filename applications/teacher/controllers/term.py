@@ -2,11 +2,14 @@
 # __author__ = xutao
 
 from __future__ import division, unicode_literals, print_function
+import json
 from django.shortcuts import render_to_response
 from django.views.generic import TemplateView, View
 from django.template import RequestContext
 from applications.grade.models.term import Term
+from applications.students.models.students import StudentGrade
 from applications.teacher.models.teacher import Teacher, TeacherTermShip, SchoolClassTeacherShip
+from libs.http import json_success_response
 
 
 class TeacherTermsView(TemplateView):
@@ -46,6 +49,7 @@ class TeacherCreateTermView(View):
         teacher_term_ship = TeacherTermShip(teacher_id=user.id, term_id=term.id)
         teacher_term_ship.save()
 
+    #处理获取填写考试信息的页面
     def get(self, request, *args, **kwargs):
 
         template = 'create_term.html'
@@ -58,3 +62,14 @@ class TeacherCreateTermView(View):
             "classes": classes_json
         }
         return render_to_response(template, context)
+
+
+#老师录入成绩的保存处理
+class HandleStudentsGrade(View):
+    def post(self, request, *args, **kwargs):
+        data = json.loads(request.body).get('data', '')
+        term = request.POST.get('term', '')
+        for item in data:
+            grade = StudentGrade(student_id=item.get('id', ''), term_id=term, grade=item.get('grade', ''))
+            grade.save()
+        return json_success_response(json_data={})
