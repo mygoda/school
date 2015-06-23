@@ -19,6 +19,7 @@ class TeacherTermService(ServiceBase):
             "id": obj.id,
             "name": obj.term.name,
             "type": obj.term.type,
+            "subject": obj.subject,
             "school_class": obj.term.school_class,
         }
 

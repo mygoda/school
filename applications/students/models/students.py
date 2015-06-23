@@ -27,6 +27,11 @@ class Students(models.Model):
     def __unicode__(self):
         return unicode(self.user.username)
 
+    def get_grade_with_term(self, term):
+        grades = self.studentgrade_set.all()
+        grade = grades.filter(term_id=term)
+        return grade
+
 
 class StudentGrade(models.Model):
     class Meta:

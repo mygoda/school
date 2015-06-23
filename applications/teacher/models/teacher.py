@@ -68,7 +68,6 @@ class SchoolClassMasterShip(models.Model):
     created_at = models.DateTimeField(u'创建时间', blank=True, null=True, default=datetime_now())
 
 
-
 class TeacherTermShip(models.Model):
     class Meta:
         app_label = u"teacher"
