@@ -18,7 +18,7 @@ class Teacher(models.Model):
         db_table = u'teacher_teacher'
         verbose_name = verbose_name_plural = u"教师"
 
-    user = models.ForeignKey(auth_user_model, verbose_name=u'教师名', null=True, blank=True)
+    user = models.ForeignKey(auth_user_model, verbose_name=u'教师', null=True, blank=True)
     subject = models.ForeignKey(SubjectsTemplate, verbose_name=u'课程', null=True, blank=True)
     is_master = models.BooleanField(u'是否班主任', blank=True, null=True)
 

@@ -4,27 +4,23 @@
 from __future__ import division, unicode_literals, print_function
 from django.views.generic import TemplateView, View
 from django.template import RequestContext
-from applications.students.models.evaluation import StudentEvaluation
-from libs.http import json_success_response
+from applications.teacher.models.message import TeacherMessage
 
 
-class GetTeacherMessage(TemplateView):
-    template_name = 'message/teacher_index.html'
+class TeacherMessagesView(TemplateView):
+    template_name = 'message_list.html'
 
     def get_context_data(self, **kwargs):
         return RequestContext(self.request)
 
 
-#处理老师评价学生的处理接口
-class ConnectParentsView(View):
-    def post(self, request, *args, **kwargs):
-        content = request.POST.get('content', '')
-        teacher_id = request.POST.get('teacher', '')
-        student = request.POST.get('student', '')
+class TeacherMessageDetailView(TemplateView):
+    template_name = 'message_detail.html'
 
-        evaluation = StudentEvaluation(student_id=student, content=content, teacher_id=teacher_id)
-        evaluation.save()
+    def get_context_data(self, **kwargs):
+        message = TeacherMessage.objects.get(**kwargs)
+        context = message.to_json()
+        return RequestContext(self.request, context)
 
-        return json_success_response(json_data={})
 
 

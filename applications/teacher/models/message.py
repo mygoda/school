@@ -43,3 +43,14 @@ class TeacherMessage(models.Model):
     def get_time(self):
         return datetime_to_str(self.created_at, "%H:%M")
 
+    def get_created_at(self):
+        return datetime_to_str(self.created_at, "%Y-%m-%d %H:%M")
+
+    def to_json(self):
+        return {
+            "id": self.id,
+            "created_by": self.created_by,
+            "created_at": self.created_at,
+            "content": self.content,
+        }
+

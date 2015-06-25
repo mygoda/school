@@ -42,6 +42,7 @@ class StudentGrade(models.Model):
     student = models.ForeignKey(Students, verbose_name=u'学生', blank=True, null=True)
     term = models.ForeignKey(Term, verbose_name=u'考试', blank=True, null=True)
     grade = models.IntegerField(u'成绩', blank=True, null=True)
+    position = models.IntegerField(u'排名', blank=True, null=True)
 
     created_at = models.DateTimeField(u'创建时间', default=datetime_now(), blank=True, null=True)
 

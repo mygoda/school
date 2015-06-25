@@ -10,7 +10,7 @@ from applications.grade.models.term import Term
 from applications.students.models.students import StudentGrade
 from applications.teacher.models.teacher import Teacher, TeacherTermShip, SchoolClassTeacherShip
 from libs.http import json_success_response
-
+from django.contrib.auth.decorators import login_required
 
 class TeacherTermsView(TemplateView):
     template_name = 'term/list.html'
@@ -19,16 +19,21 @@ class TeacherTermsView(TemplateView):
         return RequestContext(self.request)
 
 
+#对于某个考试相关的详情页，应该查看该考试相关的统计页面
+class TeacherTermDetailView(TemplateView):
+    pass
+
+
+
 class TeacherCreateTermView(View):
     #教师创建考试页面
-
+    @login_required
     def post(self, request, *args, **kwargs):
         t = 'create_success.html'
         data = request.POST
         user = request.user
         term = self.create_term(data=data)
         self.create_term_teacher_ship(user=user, term=term)
-
         context = {
             "school_class": data.get('school_class', ''),
             "term": term.id
@@ -50,6 +55,7 @@ class TeacherCreateTermView(View):
         teacher_term_ship.save()
 
     #处理获取填写考试信息的页面
+    @login_required
     def get(self, request, *args, **kwargs):
 
         template = 'create_term.html'
@@ -68,8 +74,11 @@ class TeacherCreateTermView(View):
 class HandleStudentsGrade(View):
     def post(self, request, *args, **kwargs):
         data = json.loads(request.body).get('data', '')
+        data = sorted(data, key=lambda x:x['grade'], reverse=True)
         term = request.POST.get('term', '')
+        position = 1
         for item in data:
-            grade = StudentGrade(student_id=item.get('id', ''), term_id=term, grade=item.get('grade', ''))
+            grade = StudentGrade(student_id=item.get('id', ''), term_id=term, grade=item.get('grade', ''), position=position)
             grade.save()
+            position += 1
         return json_success_response(json_data={})
