@@ -27,7 +27,7 @@ TEMPLATE_DEBUG = config.getboolean("django", "template_dubug")
 
 ALLOWED_HOSTS = json.loads(config.get("django", "allowed_hosts"))
 APP_HOST_NAME = config.get("django", "app_host_name")
-SYSTEM_NAME = config.get("db", "db_name")
+SYSTEM_NAME = config.get("db", "db_table")
 
 ADMINS = (
     ('Shadow', 'chenchiyuan03@gmail.com'),
@@ -41,7 +41,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': config.get("db", "engine"),
-        'NAME': config.get("db", "db_name"),
+        'NAME': config.get("db", "db_table"),
         'USER': config.get("db", "username"),
         'PASSWORD': config.get("db", "password"),
         'HOST': '',

@@ -24,6 +24,7 @@ class TeacherTermService(ServiceBase):
         }
 
 
+#录入成绩时获取学生列表
 class QuerysetStudentByTermService(ServiceBase):
     model = Students
 

@@ -15,7 +15,7 @@ auth_user_model = getattr(settings, 'AUTH_USER_MODEL', 'user.User')
 class Term(models.Model):
     class Meta:
         app_label = 'grade'
-        db_name = 'grade_term_tpl'
+        db_table = 'grade_term_tpl'
         verbose_name = verbose_name_plural = "考试"
 
     NORMAL_TEST = 0

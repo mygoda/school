@@ -20,7 +20,7 @@ class TeacherMessageService(ServiceBase):
             "content": obj.content,
             "type": obj.type,
             "created_date": obj.get_date,
-            "created_time": obj.get_time
+            "created_time": obj.get_created_at
         }
 
 

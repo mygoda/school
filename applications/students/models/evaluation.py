@@ -15,7 +15,7 @@ auth_user_model = getattr(settings, 'AUTH_USER_MODEL', 'user.User')
 class StudentEvaluation(models.Model):
     class Meta:
         app_label = 'students'
-        db_name = 'students_student_evaluation'
+        db_table = 'students_student_evaluation'
         verbose_name = verbose_name_plural = u"学生评价"
 
     student = models.ForeignKey(Students, verbose_name=u'学生', null=True, blank=True)

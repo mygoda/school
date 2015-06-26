@@ -15,7 +15,7 @@ auth_user_model = getattr(settings, 'AUTH_USER_MODEL', 'user.User')
 class Students(models.Model):
     class Meta:
         app_label = 'students'
-        db_name = 'students_students'
+        db_table = 'students_students'
         verbose_name = verbose_name_plural = "学生班级关系"
 
     user = models.ForeignKey(auth_user_model, verbose_name=u'学生', blank=True, null=True)
@@ -36,7 +36,7 @@ class Students(models.Model):
 class StudentGrade(models.Model):
     class Meta:
         app_label = 'students'
-        db_name = 'students_students_grade'
+        db_table = 'students_students_grade'
         verbose_name = verbose_name_plural = "学生成绩"
 
     student = models.ForeignKey(Students, verbose_name=u'学生', blank=True, null=True)
@@ -53,7 +53,7 @@ class StudentGrade(models.Model):
 class StudentHomework(models.Model):
     class Meta:
         app_label = 'students'
-        db_name = 'students_students_work'
+        db_table = 'students_students_work'
         verbose_name = verbose_name_plural = "学生作业"
 
     school_class = models.ForeignKey(SchoolClass, verbose_name=u'班级', blank=True, null=True)
