@@ -6,7 +6,7 @@ from django.shortcuts import render_to_response
 from django.views.generic import View
 from applications.api.service.teacher import TeacherMessageService, TeacherScheduleService
 from applications.api.service.mixins.views import ApiCatchExceptionMixin, ApiQuerysetMixin, ApiGetMixin
-from applications.api.service.term import TeacherTermService
+from applications.api.service.term import TeacherTermService, TermsQuerysetService, QuerysetStudentByTermService
 from applications.teacher.models.teacher import SchoolClassTeacherShip
 
 
@@ -24,8 +24,7 @@ class TeacherTermsQuerysetView(ApiCatchExceptionMixin, ApiQuerysetMixin, View):
 class TeacherClassesQuerysetView(View):
     def get(self, request, *args, **kwargs):
         t = 'teacher_classes.html'
-        teacher_id = request.GET.get('teacher', '')
-        classes = SchoolClassTeacherShip.objects.filter(teacher_id=teacher_id)
+        classes = SchoolClassTeacherShip.objects.filter(**kwargs)
         classes_json = map(lambda obj: obj.school_class.to_json(), classes)
         context = {
             "classes": classes_json,
@@ -37,6 +36,16 @@ class TeacherClassesQuerysetView(View):
 class TeacherSchedulesView(ApiCatchExceptionMixin, ApiQuerysetMixin, View):
     def get_model_service(self, **kwargs):
         return TeacherScheduleService(**kwargs)
+
+
+class ClassTermsQuerysetView(ApiCatchExceptionMixin, ApiQuerysetMixin, View):
+    def get_model_service(self, **kwargs):
+        return TermsQuerysetService(**kwargs)
+
+
+class ClassStudentsQuerysetView(ApiCatchExceptionMixin, ApiQuerysetMixin, View):
+    def get_model_service(self, **kwargs):
+        return QuerysetStudentByTermService(**kwargs)
 
 
 

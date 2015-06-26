@@ -7,7 +7,7 @@ from django.shortcuts import render_to_response
 from django.views.generic import TemplateView, View
 from django.template import RequestContext
 from applications.grade.models.term import Term
-from applications.students.models.students import StudentGrade
+from applications.students.models.students import StudentGrade, Students
 from applications.teacher.models.teacher import Teacher, TeacherTermShip, SchoolClassTeacherShip
 from libs.http import json_success_response
 from django.contrib.auth.decorators import login_required
@@ -70,7 +70,7 @@ class TeacherCreateTermView(View):
         return render_to_response(template, context)
 
 
-#老师录入成绩的保存处理
+#老师录入成绩的保存处理,处理成功返回200，跳转会考试管理的主页
 class HandleStudentsGrade(View):
     def post(self, request, *args, **kwargs):
         data = json.loads(request.body).get('data', '')
@@ -82,3 +82,17 @@ class HandleStudentsGrade(View):
             grade.save()
             position += 1
         return json_success_response(json_data={})
+
+
+class GetRecordStudentsGradeView(TemplateView):
+    template_name = 'record_students_grade.html'
+
+    def get_context_data(self, **kwargs):
+        school_class = self.request.GET.get('school_class', '')
+
+        context = {
+            "school_class": school_class
+        }
+        return RequestContext(self.request, context)
+
+

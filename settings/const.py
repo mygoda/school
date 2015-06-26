@@ -21,6 +21,10 @@ TICKET_ID = "(?P<ticket_id>[0-9]+)"
 
 TEACHER_ID = "(?P<teacher_id>[0-9]+)"
 
+CLASS_ID = "(?P<school_class_id>[0-9]+)"
+
+TYPE = "(?P<type>[0-9]+)"
+
 
 
 
