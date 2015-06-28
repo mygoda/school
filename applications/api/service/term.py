@@ -4,6 +4,7 @@
 from __future__ import division, unicode_literals, print_function
 from applications.api.service.base import ServiceBase
 from applications.grade.models.term import Term
+from applications.statistics.models.terms import TermStatistics
 from applications.students.models.students import Students
 from applications.teacher.models.teacher import TeacherTermShip
 
@@ -53,4 +54,21 @@ class TermsQuerysetService(ServiceBase):
             "name": obj.name,
             "subject": obj.subject,
             "teacher": obj.created_by_id
+        }
+
+
+class TermStatisticsService(ServiceBase):
+    model = TermStatistics
+
+    queryset_name = 'statistics'
+
+    obj_name = 'statistic'
+
+    def obj_to_json(self, obj):
+        return {
+            "id": obj.id,
+            "max": obj.max,
+            "sum": obj.sum,
+            "pass_number": obj.pass_number,
+            "excellent_number": obj.excellent_number,
         }

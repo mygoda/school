@@ -7,6 +7,7 @@ from django.shortcuts import render_to_response
 from django.views.generic import TemplateView, View
 from django.template import RequestContext
 from applications.grade.models.term import Term
+from applications.statistics.models.terms import TermStatistics
 from applications.students.models.students import StudentGrade, Students
 from applications.teacher.models.teacher import Teacher, TeacherTermShip, SchoolClassTeacherShip
 from libs.http import json_success_response
@@ -21,7 +22,13 @@ class TeacherTermsView(TemplateView):
 
 #对于某个考试相关的详情页，应该查看该考试相关的统计页面
 class TeacherTermDetailView(TemplateView):
-    pass
+    template_name = 'term_detail.html'
+
+    def get_context_data(self, **kwargs):
+        return {
+            "term": self.request.GET.get('term', '')
+        }
+
 
 
 
@@ -70,18 +77,33 @@ class TeacherCreateTermView(View):
         return render_to_response(template, context)
 
 
-#老师录入成绩的保存处理,处理成功返回200，跳转会考试管理的主页
+#老师录入成绩的保存处理,处理成功返回200，跳转会考试管理的主页, 并且进行相关的统计操作
 class HandleStudentsGrade(View):
     def post(self, request, *args, **kwargs):
         data = json.loads(request.body).get('data', '')
         data = sorted(data, key=lambda x:x['grade'], reverse=True)
         term = request.POST.get('term', '')
         position = 1
+        max_grade = data[0].get('grade', '')
+        pass_number = 0
+        excellent_number = 0
+        sum = 0
         for item in data:
-            grade = StudentGrade(student_id=item.get('id', ''), term_id=term, grade=item.get('grade', ''), position=position)
+            point = item.get('grade', '')
+            grade = StudentGrade(student_id=item.get('id', ''), term_id=term, grade=point, position=position)
             grade.save()
+            if point > 60:
+                pass_number += 1
+            elif point > 90:
+                excellent_number += 1
+            sum += point
             position += 1
+        self.statictics(sum=sum, pass_number=pass_number, max=max_grade, excellent_number=excellent_number, term=term)
         return json_success_response(json_data={})
+
+    def statictics(self, sum, pass_number, excellent_number, term, max):
+        term_statistics = TermStatistics(term_id=term, sum=sum, pass_number=pass_number, excellent_number=excellent_number, max=max)
+        term_statistics.save()
 
 
 class GetRecordStudentsGradeView(TemplateView):

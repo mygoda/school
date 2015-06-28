@@ -11,4 +11,5 @@ urlpatterns = patterns('',
     url(r'^terms/$' % TEACHER_ID, TeacherTermsView.as_view(), name='teacher_terms_view'),
     url(r'^term/%s/$' % URL_ID, TeacherTermDetailView.as_view(), name='teacher_term_detail_view'),
     url(r'^record/grade/$', GetRecordStudentsGradeView.as_view(), name='record_students_grade_view'),
+    url(r'term/detail/$', TeacherTermDetailView.as_view(), name='get_term_detail_view'),
 )

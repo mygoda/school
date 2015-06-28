@@ -3,7 +3,7 @@
 
 from __future__ import division, unicode_literals, print_function
 from applications.api.service.base import ServiceBase
-from applications.students.models.students import Students
+from applications.students.models.students import Students, StudentGrade
 
 
 #通过班级查找班级学生
@@ -20,3 +20,18 @@ class StudentsClassService(ServiceBase):
             "name": obj.user.username,
         }
 
+
+class StudentsGradeService(ServiceBase):
+    model = StudentGrade
+
+    queryset_name = 'students_grade'
+
+    obj_name = 'student_grade'
+
+    def obj_to_json(self, obj):
+        return {
+            "student": obj.student_id,
+            "term": obj.term_id,
+            "grade": obj.grade,
+            "position": obj.position,
+        }

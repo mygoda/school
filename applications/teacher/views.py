@@ -54,3 +54,11 @@ class WriteToParentsView(TemplateView):
 class TeacherClassesView(TemplateView):
     t = 'classes_list.html'
 
+    def get_context_data(self, **kwargs):
+
+        teacher = kwargs.get('id', '')
+
+        return {
+            "teacher": teacher
+        }
+

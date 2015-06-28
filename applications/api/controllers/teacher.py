@@ -6,7 +6,8 @@ from django.shortcuts import render_to_response
 from django.views.generic import View
 from applications.api.service.teacher import TeacherMessageService, TeacherScheduleService
 from applications.api.service.mixins.views import ApiCatchExceptionMixin, ApiQuerysetMixin, ApiGetMixin
-from applications.api.service.term import TeacherTermService, TermsQuerysetService, QuerysetStudentByTermService
+from applications.api.service.term import TeacherTermService, TermsQuerysetService, QuerysetStudentByTermService, \
+    TermStatisticsService
 from applications.teacher.models.teacher import SchoolClassTeacherShip
 
 
@@ -46,6 +47,10 @@ class ClassTermsQuerysetView(ApiCatchExceptionMixin, ApiQuerysetMixin, View):
 class ClassStudentsQuerysetView(ApiCatchExceptionMixin, ApiQuerysetMixin, View):
     def get_model_service(self, **kwargs):
         return QuerysetStudentByTermService(**kwargs)
+
+class TeacherTermDetailView(ApiCatchExceptionMixin, ApiGetMixin, View):
+    def get_model_service(self, **kwargs):
+        return TermStatisticsService(**kwargs)
 
 
 
