@@ -7,10 +7,10 @@ from grappelli.dashboard import modules, Dashboard
 
 
 class CustomIndexDashboard(Dashboard):
-    title = u"赫兹租车管理系统"
+    title = u"校园管理系统"
 
     def init_with_context(self, context):
-        site_name = u"赫兹租车"
+        site_name = u"学校管理"
 
         self.children.append(modules.ModelList(
             u"用户管理",
@@ -34,126 +34,52 @@ class CustomIndexDashboard(Dashboard):
             )
         ))
 
+
         self.children.append(modules.ModelList(
-            u"会议管理",
+            u"教师管理",
             column=1,
             collapsible=True,
             models=(
-                'applications.meeting.models.meeting.Meeting',
-                'applications.meeting.models.meeting.Ticket',
-                'applications.meeting.models.meeting.MeetingBank',
+                'applications.teacher.models.teacher.Teacher',
+                'applications.teacher.models.teacher.Term',
+                'applications.teacher.models.teacher.SchoolClassTeacherShip',
+                'applications.teacher.models.teacher.SchoolClassMasterShip',
+                'applications.teacher.models.teacher.TeacherTermShip',
+                'applications.teacher.models.schedule.TeacherSchedule',
+                'applications.teacher.models.schoolClass.SchoolClass',
+                'applications.teacher.models.subjects.SubjectsTemplate',
             )
         ))
 
-        self.children.append(modules.ModelList(
-            u"门票管理",
-            column=2,
-            collapsible=True,
-            models=(
-                'applications.meeting.models.meeting.Agent',
-                'applications.meeting.models.meeting.TicketTemplate',
-                'applications.meeting.models.meeting.AgentTicketShip',
-                'applications.meeting.models.order.TicketCheckInHistory',
-            )
-        ))
-
-
-        self.children.append(modules.ModelList(
-            u"订单管理",
-            column=1,
-            collapsible=True,
-            models=(
-                'applications.meeting.models.order.ShoppingCart',
-                'applications.meeting.models.order.Order',
-                'applications.meeting.models.code.Code',
-            )
-        ))
-
-        self.children.append(modules.ModelList(
-            u"预约管理",
-            column=1,
-            collapsible=True,
-            models=(
-                'applications.meeting.models.schedule.Schedule',
-                'applications.meeting.models.schedule.UserSchedule',
-            )
-        ))
-
-        self.children.append(modules.ModelList(
-            u"订单",
-            column=2,
-            collapsible=True,
-            models=(
-                'applications.order.models.Trade',
-                'applications.meeting.models.order.Ticket',
-            )
-        ))
 
         self.children.append(modules.ModelList(
             u"消息管理",
             column=2,
             collapsible=True,
             models=(
-                'applications.meeting.models.message.Message',
+                'applications.teacher.models.message.TeacherMessage',
             )
         ))
 
+
+
         self.children.append(modules.ModelList(
-            u"门票打印",
+            u"学生管理",
             column=2,
             collapsible=True,
             models=(
-                'applications.meeting.models.meeting.PrintTemplate',
-                'applications.meeting.models.meeting.MeetingTemplateShip',
+                'applications.students.models.students.Students',
+                'applications.students.models.students.StudentGrade',
+                'applications.students.models.students.StudentHomework',
             )
         ))
 
+
         self.children.append(modules.ModelList(
-            u"系统管理",
+            u"统计管理",
             column=2,
             collapsible=True,
             models=(
-                'applications.base.models.ServerSetting',
-                'applications.meeting.models.setting.SystemSetting',
-                'applications.meeting.models.setting.CheckInSetting',
-                'applications.meeting.models.setting.PrinterSetting'
+                'applications.statistics.models.terms.TermStatistics',
             )
         ))
-
-        self.children.append(modules.ModelList(
-            u"服务监控",
-            column=3,
-            collapsible=True,
-            models=(
-                'applications.base.models.ErrorLog',
-            )
-        ))
-
-        self.children.append(modules.ModelList(
-            u"调查问卷",
-            column=3,
-            collapsible=True,
-            models=(
-                'applications.meeting.models.survey.MeetingSurvey',
-                'applications.meeting.models.survey.ClassSurvey',
-            )
-        ))
-
-        self.children.append(modules.ModelList(
-            u"证书",
-            column=3,
-            collapsible=True,
-            models=(
-                'applications.meeting.models.certificate.Certificate',
-                'applications.meeting.models.certificate.UserCertificate',
-            )
-        ))
-
-        # self.children.append(modules.ModelList(
-        #     u"微信订单信息",
-        #     column=3,
-        #     collapsible=True,
-        #     models=(
-        #         'applications.payment.models.WeChatPayment',
-        #     )
-        # ))

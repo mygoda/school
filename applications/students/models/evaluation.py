@@ -19,7 +19,7 @@ class StudentEvaluation(models.Model):
         verbose_name = verbose_name_plural = u"学生评价"
 
     student = models.ForeignKey(Students, verbose_name=u'学生', null=True, blank=True)
-    content = models.CharField(u'评价内容', max_length=65536, null=True, blank=True)
+    content = models.CharField(u'评价内容', max_length=5536, null=True, blank=True)
     teacher = models.ForeignKey(Teacher, verbose_name=u'评价人', null=True, blank=True)
 
     created_at = models.DateTimeField(u'创建时间', default=datetime_now(), blank=True, null=True)

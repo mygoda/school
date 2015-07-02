@@ -8,14 +8,18 @@ from applications.teacher.models.message import TeacherMessage
 
 
 class TeacherMessagesView(TemplateView):
-    template_name = 'message_list.html'
+    template_name = 'teacher_v2/teacher_messages_list.html'
 
     def get_context_data(self, **kwargs):
-        return RequestContext(self.request)
+        teacher = self.request.GET.get('teacher', '')
+        context = {
+            "teacher": teacher
+        }
+        return RequestContext(self.request, context)
 
 
 class TeacherMessageDetailView(TemplateView):
-    template_name = 'message_detail.html'
+    template_name = 'teacher_v2/teacher_message_detail.html'
 
     def get_context_data(self, **kwargs):
         message = TeacherMessage.objects.get(**kwargs)

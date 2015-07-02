@@ -20,8 +20,8 @@ class TeacherSchedule(models.Model):
     week = models.IntegerField(u'时间', null=True, blank=True)
     start = models.IntegerField(u'课程开始时间', blank=True, null=True)
     end = models.IntegerField(u'课程结束时间', blank=True, null=True)
-    position = models.CharField(u'地点', blank=True, null=True)
-    content = models.CharField(u'内容', blank=True, null=True)
+    position = models.CharField(u'地点', blank=True, null=True, max_length=128)
+    content = models.CharField(u'内容', blank=True, null=True, max_length=2528)
 
     created_at = models.DateTimeField(u'创建时间', blank=True, null=True, default=datetime_now())
 

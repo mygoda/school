@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>学生管理</title>
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+	<script src="/static/js/setRem.js"></script>
+	<script src="/static/js/controllers/controller.js"></script>
+
+	 <!--<link rel="stylesheet" href="/static/css/reset.css">-->
+	<link rel="stylesheet" href="/static/css/index.css">
+</head>
+<body>
+	<!-- 个人信息部分开始 -->
+	<div class="k-homeTeachInfo">
+		<a href="#">
+			<div class="imgWrap">
+				<img class="KiRoader" src="/static/img/head1.png" alt="用户头像">
+			</div>
+		</a>
+		<a href="#">
+			<div class="nameWrap">
+				<p class="name">{{ username }}</p>
+			</div>
+		</a>
+		<ul class="infoWrap">
+            <li class="info ">评分：{{ grade }}分</li>
+            <li class="info ">科目：{{ subject }}</li>
+        </ul>
+	</div>
+	<!-- 个人信息部分结束 -->
+
+	<!-- 主题功能部分 -->
+	<div class="funList">
+		<ul class="list ">
+			<li class="funItem">
+				<a href="schedules.html" class="link">
+					<img class="icon" src="/static/img/day.png" alt="我的课程">
+					<p class="name">我的课程</p>
+				</a>
+			</li>
+			<li class="funItem">
+				<a href="#" class="link">
+					<img class="icon" src="/static/img/day.png" alt="我的课程">
+					<p class="name">我的班级</p>
+				</a>
+			</li>
+			<li class="funItem">
+				<a href="#" class="link">
+					<img class="icon" src="/static/img/day.png" alt="我的课程">
+					<p class="name">我的学生</p>
+				</a>
+			</li>
+			<li class="funItem">
+				<a href="#" class="link">
+					<img class="icon" src="/static/img/day.png" alt="我的课程">
+					<p class="name">考试管理</p>
+				</a>
+			</li>
+			<li class="funItem">
+				<a href="#" class="link">
+					<img class="icon" src="/static/img/day.png" alt="我的课程">
+					<p class="name">作业管理</p>
+				</a>
+			</li>
+			<li class="funItem">
+				<a href="#" class="link">
+					<img class="icon" src="/static/img/day.png" alt="我的课程">
+					<p class="name">联系家长</p>
+				</a>
+			</li>
+			<li class="funItem">
+				<a href="#" class="link">
+					<img class="icon" src="/static/img/day.png" alt="我的课程">
+					<p class="name">通知中心</p>
+				</a>
+			</li>
+		</ul>
+	</div>
+
+</body>
+</html>

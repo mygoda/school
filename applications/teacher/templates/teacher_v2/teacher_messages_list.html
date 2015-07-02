@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>通知中心</title>
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <script>
+        window.teacher = "{{ teacher }}"
+    </script>
+    <link rel="stylesheet" href="/static/css/index.css">
+</head>
+{% verbatim %}
+<body ng-app="courseApp">
+
+	<div class="container" ng-controller="courseCtrl"> 
+		<div class="arrange">
+			<div class="listTime tabItem">
+				通知中心
+			</div>
+		</div>
+
+		<!-- 来源，时间 -->
+		<div class="contain" ng-repeat="msg in messages" ng-click="goDetails($event, msg)">
+			<div class="headFrom">
+				<span class="from floL">{{msg.type}}</span>
+				<span class="time floR">{{msg.created_time}}</span>
+			</div>
+
+			<!-- 通知内容部分 -->
+			<div class="content">
+				<a href="/teacher/message/{{ msg.id }}/">{{msg.message}}</a>
+			</div>
+		</div>
+	</div>
+    <script src="/static/js/angularJS/angular-1.3.0.js"></script>
+    <script type="text/javascript" src="/static/js/angularJs/angular-resource.min.js"></script>
+	<script src="/static/js/setRem.js"></script>
+	<script src="/static/js/controllers/teacher_inform_app.js"></script>
+    <script type="text/javascript" src="/static/js/services/teacher_request.js"></script>
+
+</body>
+{% endverbatim %}
+</html>

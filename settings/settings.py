@@ -14,8 +14,6 @@ AUTHENTICATION_BACKENDS = (
     'applications.users.backends.PhoneCheckBackend',
 )
 
-MAX_GRADE = config.get('max_grade', 1)
-
 LOGIN_URL = "/users/login/"
 
 AUTH_USER_MODEL = "users.User"
@@ -125,11 +123,12 @@ INSTALLED_APPS = (
     'applications.users',
     'applications.ueditor',
     'applications.weixin',
-    'applications.teacher',
-    'applications.parents',
     'applications.grade',
+    'applications.teacher',
+    'applications.students',
     'applications.activity',
     'applications.api',
+    'applications.statistics',
 
 
     'django.contrib.admin',

@@ -6,15 +6,14 @@ import json
 from django.shortcuts import render_to_response
 from django.views.generic import TemplateView, View
 from django.template import RequestContext
-from applications.grade.models.term import Term
 from applications.statistics.models.terms import TermStatistics
 from applications.students.models.students import StudentGrade, Students
-from applications.teacher.models.teacher import Teacher, TeacherTermShip, SchoolClassTeacherShip
+from applications.teacher.models.teacher import Teacher, TeacherTermShip, SchoolClassTeacherShip, Term
 from libs.http import json_success_response
 from django.contrib.auth.decorators import login_required
 
 class TeacherTermsView(TemplateView):
-    template_name = 'term/list.html'
+    template_name = 'teacher_v2/teacher_terms_list.html'
 
     def get_context_data(self, **kwargs):
         return RequestContext(self.request)
@@ -30,13 +29,11 @@ class TeacherTermDetailView(TemplateView):
         }
 
 
-
-
 class TeacherCreateTermView(View):
     #教师创建考试页面
     @login_required
     def post(self, request, *args, **kwargs):
-        t = 'create_success.html'
+        t = 'teacher_v2/create_term_success.html'
         data = request.POST
         user = request.user
         term = self.create_term(data=data)
@@ -65,7 +62,7 @@ class TeacherCreateTermView(View):
     @login_required
     def get(self, request, *args, **kwargs):
 
-        template = 'create_term.html'
+        template = 'teacher_v2/teacher_create_term.html'
 
         user = request.user
         classes = SchoolClassTeacherShip.objects.filter(teacher_id=user.id)
@@ -107,7 +104,7 @@ class HandleStudentsGrade(View):
 
 
 class GetRecordStudentsGradeView(TemplateView):
-    template_name = 'record_students_grade.html'
+    template_name = 'teacher_v2/teacher_record_score.html'
 
     def get_context_data(self, **kwargs):
         school_class = self.request.GET.get('school_class', '')

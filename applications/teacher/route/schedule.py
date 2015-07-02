@@ -3,8 +3,8 @@
 
 from __future__ import division, unicode_literals, print_function
 from django.conf.urls import patterns, url
-from applications.api.controllers.teacher import TeacherSchedulesView
-from applications.teacher.controllers.schedule import TeacherScheduleDetailView
+
+from applications.teacher.controllers.schedule import TeacherScheduleDetailView, TeacherSchedulesView
 from settings.const import TEACHER_ID, URL_ID
 
 

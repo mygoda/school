@@ -21,4 +21,4 @@ class TeacherScheduleDetailView(View):
 
 #日程信息通过接口去获得
 class TeacherSchedulesView(TemplateView):
-    template_name = 'schedules_list.html'
+    template_name = 'teacher_v2/teacher_schedules.html'

@@ -16,7 +16,7 @@ class StudentsClassService(ServiceBase):
 
     def obj_to_json(self, obj):
         return {
-            "id": obj.id,
+            "id": obj.id,  #学生id
             "name": obj.user.username,
         }
 

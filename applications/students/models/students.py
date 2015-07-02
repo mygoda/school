@@ -6,7 +6,7 @@ from django.db import models
 from django.conf import settings
 from applications.teacher.models.schoolClass import SchoolClass
 from applications.teacher.models.subjects import SubjectsTemplate
-from applications.grade.models.term import Term
+from applications.teacher.models.teacher import Term
 from libs.datetimes import datetime_now
 
 auth_user_model = getattr(settings, 'AUTH_USER_MODEL', 'user.User')
@@ -57,7 +57,7 @@ class StudentHomework(models.Model):
 
     school_class = models.ForeignKey(SchoolClass, verbose_name=u'班级', blank=True, null=True)
     subject = models.ForeignKey(SubjectsTemplate, verbose_name=u'科目', blank=True, null=True)
-    content = models.CharField(u'作业内容', max_length=65536, blank=True, null=True)
+    content = models.CharField(u'作业内容', max_length=5536, blank=True, null=True)
 
     created_at = models.DateTimeField(u'创建时间', default=datetime_now(), blank=True, null=True)
 

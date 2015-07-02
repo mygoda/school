@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 # __author__ = xutao
-
 from __future__ import division, unicode_literals, print_function
 from libs.datetimes import datetime_now
 from django.db import models
@@ -35,6 +34,7 @@ class SchoolClass(models.Model):
         return {
             "id": self.id,
             "grade": self.grade,
+            "name": self.__unicode__(),
             "team": self.team,
             "number": self.number,
         }

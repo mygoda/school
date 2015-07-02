@@ -8,7 +8,7 @@ from settings.const import TEACHER_ID, URL_ID
 
 urlpatterns = patterns('',
     url(r'^create/term/$', TeacherCreateTermView.as_view(), name='teacher_create_view'),
-    url(r'^terms/$' % TEACHER_ID, TeacherTermsView.as_view(), name='teacher_terms_view'),
+    url(r'^terms/$', TeacherTermsView.as_view(), name='teacher_terms_view'),
     url(r'^term/%s/$' % URL_ID, TeacherTermDetailView.as_view(), name='teacher_term_detail_view'),
     url(r'^record/grade/$', GetRecordStudentsGradeView.as_view(), name='record_students_grade_view'),
     url(r'term/detail/$', TeacherTermDetailView.as_view(), name='get_term_detail_view'),

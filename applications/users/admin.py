@@ -9,9 +9,6 @@ from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from applications.users.models import User
 from django import forms
-from applications.order.models import Trade
-from applications.meeting.models.order import Ticket
-
 
 class UserCreationForm(forms.ModelForm):
     """A form for creating new users. Includes all the required

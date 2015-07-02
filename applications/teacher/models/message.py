@@ -20,12 +20,12 @@ class TeacherMessage(models.Model):
     PARENTS = 1
     SYSTEM = 2
     MESSAGE_TYPE = (
-        (SCHOOL, u'学生'),
+        (SCHOOL, u'学校'),
         (PARENTS, u'家长'),
         (SYSTEM, u'系统')
     )
 
-    content = models.CharField(u'通知内容', max_length=65536, null=True, blank=True)
+    content = models.CharField(u'通知内容', max_length=2578, null=True, blank=True)
     teacher = models.ForeignKey(Teacher, verbose_name=u'接受者', null=True, blank=True)
     type = models.SmallIntegerField(u'类型', default=SCHOOL, choices=MESSAGE_TYPE)
     created_by = models.ForeignKey(auth_user_model, verbose_name=u'创建人', blank=True, null=True)

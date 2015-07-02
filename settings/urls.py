@@ -10,17 +10,17 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
 
-    url(r'^activity/', include('applications.meeting.urls')),
+    url(r'^activity/', include('applications.activity.urls')),
     url(r'^api/', include('applications.api.urls')),
-    url(r'^teacher/', include('applications.base.urls')),
+    url(r'^teacher/', include('applications.teacher.urls')),
     url(r'^weixin/', include('applications.weixin.urls')),
     url(r'^grappelli/', include('grappelli.urls')),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^editor/', include("applications.ueditor.urls")),
-    url(r'^students/', include("applications.order.urls")),
+    url(r'^students/', include("applications.students.urls")),
     url(r'^users/', include("applications.users.urls")),
-    url(r'^grade/', include("applications.backend.urls")),
+    url(r'^statistics/', include("applications.statistics.urls")),
     )
 
 if settings.DEBUG:

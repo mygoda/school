@@ -2,7 +2,7 @@
 # __author__ = xutao
 
 from django.db import models
-from applications.grade.models.term import Term
+from applications.teacher.models.teacher import Term
 from libs.datetimes import datetime_now
 
 

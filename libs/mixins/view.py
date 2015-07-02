@@ -5,6 +5,7 @@ from __future__ import division, unicode_literals, print_function
 import logging
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
+from libs.decorators import login_required
 from libs.http import json_forbidden_response
 
 logger = logging.getLogger(__name__)
@@ -49,3 +50,9 @@ class CsrfExemptMixin(object):
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         return super(CsrfExemptMixin, self).dispatch(request, *args, **kwargs)
+
+
+class LoginRequiredMixin(object):
+    @method_decorator(login_required(login_url="mobile_user_login_view"))
+    def dispatch(self, request, *args, **kwargs):
+            return super(LoginRequiredMixin, self).dispatch(request, *args, **kwargs)
