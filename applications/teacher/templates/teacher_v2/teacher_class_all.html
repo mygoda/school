@@ -8,29 +8,32 @@
     <script>
         window.teacher = "{{ teacher }}"
     </script>
-	<link rel="stylesheet" href="static/css/index.css">
-	<link rel="stylesheet" href="static/css/resets.css">
-	<link rel="stylesheet" href="static/css/footer.css">
+	<link rel="stylesheet" href="/static/teacher_v1/css/index.css">
+	<link rel="stylesheet" href="/static/teacher_v1/css/resets.css">
+	<link rel="stylesheet" href="/static/teacher_v1/css/footer.css">
 </head>
-<body ng-app="courseApp" ng-controller="courseCtrl">
+<body>
 	<div class="arrange">
 		<div class="listTime tabItem">
 			我的班级
 		</div>
 	</div>
-
-	<div class="myclass" ng-repeat="class in classes" ng-click="goDetails($event, class)">
-		<p>{{ class.class_name }}</p>
+    {% verbatim %}
+    <div ng-app="classApp" ng-controller="classController" ng-cloak>
+        <div class="myclass" ng-repeat="name in classes">
+            <a href="/teacher/class/{{ name.id }}/detail/">{{ name.class_name }}</a>
+        </div>
+    </div>
 	</div>
-
-	</div>
-	    <div class="m-footer">
-	        <p class="ctn">由<a class="link" href="#">狠任性团队</a>提供技术支持</p>
-	</div>
-    <script src="static/js/angularJS/angular-1.3.0.js"></script>
-    <script type="text/javascript" src="/static/js/angularJs/angular-resource.min.js"></script>
-	<script src="static/js/setRem.js"></script>
-	<script src="static/js/controllers/teacher_class_all_app.js"></script>
-    <script type="text/javascript" src="/static/js/services/teacher_request.js"></script>
+    {% endverbatim %}
+    <div class="m-footer">
+        <p class="ctn">由<a class="link" href="#">狠任性团队</a>提供技术支持</p>
+    </div>
+    <script src="/static/teacher_v1/js/angularJS/angular.min.js"></script>
+    <script type="text/javascript" src="/static/teacher_v1/js/angularJs/angular-resource.min.js"></script>
+	<script src="/static/teacher_v1/js/setRem.js"></script>
+	<script src="/static/teacher_v1/js/controllers/teacher_class_all_app.js"></script>
+    <script type="text/javascript" src="/static/teacher_v1/js/service/teacher_request.js"></script>
 </body>
+
 </html>

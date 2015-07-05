@@ -33,7 +33,7 @@ class TeacherMessage(models.Model):
     created_at = models.DateTimeField(u'创建时间', blank=True, null=True, default=datetime_now())
 
     def __unicode__(self):
-        return unicode(self.receiver)
+        return unicode(self.created_by)
 
     @property
     def get_date(self):
@@ -49,8 +49,8 @@ class TeacherMessage(models.Model):
     def to_json(self):
         return {
             "id": self.id,
-            "created_by": self.created_by,
-            "created_at": self.created_at,
+            "created_by": self.created_by_id,
+            "created_at": self.get_created_at(),
             "content": self.content,
         }
 

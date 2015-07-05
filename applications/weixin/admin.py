@@ -41,7 +41,7 @@ class PhotoAdmin(admin.ModelAdmin):
 class RichTextAdmin(admin.ModelAdmin):
     class Media:
         css = {
-            "all": ("/static/css/admin-override.css", ),
+            "all": ("/static/teacher_v1/css/admin-override.css", ),
         }
 
     filter_horizontal = ["rules"]

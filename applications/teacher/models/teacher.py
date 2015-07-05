@@ -6,7 +6,7 @@ from django.db import models
 from django.conf import settings
 from applications.teacher.models.subjects import SubjectsTemplate
 from applications.teacher.models.schoolClass import SchoolClass
-from libs.datetimes import datetime_now
+from libs.datetimes import datetime_now, datetime_to_str
 
 auth_user_model = getattr(settings, 'AUTH_USER_MODEL', 'user.User')
 
@@ -49,8 +49,14 @@ class Term(models.Model):
         (END_TEXT, u'期末考试'),
     )
 
+    TYPE_LIST = [
+        {0: u'普通测验'},
+        {1: u'期中考试'},
+        {2: u'期末考试'},
+    ]
+
     name = models.CharField(u'考试名', max_length=128, blank=True, null=True)
-    type = models.CharField(u'考试类型', max_length=128, choices=TEXT_LIST, default=NORMAL_TEST)
+    type = models.SmallIntegerField(u'考试类型', max_length=128, choices=TEXT_LIST, default=NORMAL_TEST)
     subject = models.ForeignKey(SubjectsTemplate, verbose_name=u'科目', null=True, blank=True)
     school_class = models.ForeignKey(SchoolClass, verbose_name=u'班级', null=True, blank=True)
     created_by = models.ForeignKey(Teacher, verbose_name=u'创建者', blank=True, null=True)
@@ -59,6 +65,9 @@ class Term(models.Model):
 
     def __unicode__(self):
         return unicode(self.name)
+
+    def get_date(self):
+        return datetime_to_str(self.created_at, "%Y-%m-%d")
 
 
 class SchoolClassTeacherShip(models.Model):
@@ -74,7 +83,7 @@ class SchoolClassTeacherShip(models.Model):
 
 
     def __unicode__(self):
-        return self.id
+        return unicode(self.id)
 
     def to_json(self):
         return {
@@ -109,4 +118,6 @@ class TeacherTermShip(models.Model):
     def __unicode__(self):
         return self.id
 
-
+    @property
+    def get_date(self):
+        return datetime_to_str(self.created_at, "%Y-%m-%d")

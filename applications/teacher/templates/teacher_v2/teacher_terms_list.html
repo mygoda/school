@@ -5,11 +5,9 @@
 	<title>学生管理</title>
 	<meta name="format-detection" content="telephone=no">
 	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
-
-	<script src="static/js/angularJs/angular-1.3.0.js"></script>
-	<script src="static/js/setRem.js"></script>
-	<script src="static/js/controllers/teacher_exam_app.js"></script>
-
+    <script>
+        window.teacher = {{ teacher }}
+    </script>
 	<!-- <link rel="stylesheet" href="css/reset.css"> -->
 	<link rel="stylesheet" href="static/css/index.css">
 </head>
@@ -20,20 +18,24 @@
 			考试管理
 		</div>
 	</div>
-
+    {% verbatim %}
 	<div class="courseWrap" ng-app="courseApp" ng-controller="courseCtrl">
-		<div class="courseList" ng-repeat="sub in subjects">
-			<p class="title">{{sub.school_class}}</p>
-			<span class="floL"><a href="#">{{sub.name}}</a></span>
+		<div class="courseList" ng-repeat="term in terms">
+			<p class="title">{{term.school_class}}</p>
+			<span class="floL"><a href="#">{{term.name}}</a></span>
 			<span class="floR"><a href="#">{{sub.time}}</a></span>
 		</div>
 	</div>
-
+    {% endverbatim %}
 
 	<div class="fixedBtnWrap">
-		<a class="btn btn-main" href="#" ng-click="">创建考试</a>
+		<a class="btn btn-main" href="/teacher/create/term/?teacher={{ teacher }}">创建考试</a>
 	</div>
 
-
+    <script src="/static/teacher_v1/js/angularJs/angular-1.3.0.js"></script>
+    <script type="text/javascript" src="/static/teacher_v1/js/angularJs/angular-resource.min.js"></script>
+	<script src="/static/teacher_v1/js/setRem.js"></script>
+	<script src="/static/teacher_v1/js/controllers/teacher_term_list.js"></script>
+    <script type="text/javascript" src="/static/teacher_v1/js/services/teacher_request.js"></script>
 </body>
 </html>

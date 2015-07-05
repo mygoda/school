@@ -19,9 +19,10 @@ class TeacherMessageService(ServiceBase):
         return {
             "id": obj.id,
             "content": obj.content,
-            "type": obj.type,
+            'type_id': obj.type,
+            "type": obj.get_type_display(),
             "created_date": obj.get_date,
-            "created_time": obj.get_created_at
+            "created_time": obj.get_created_at(),
         }
 
 

@@ -12,11 +12,15 @@ from applications.teacher.models.teacher import Teacher, TeacherTermShip, School
 from libs.http import json_success_response
 from django.contrib.auth.decorators import login_required
 
+
 class TeacherTermsView(TemplateView):
     template_name = 'teacher_v2/teacher_terms_list.html'
 
     def get_context_data(self, **kwargs):
-        return RequestContext(self.request)
+        context = {
+            "teacher": kwargs.pop('id', '')
+        }
+        return RequestContext(self.request, context)
 
 
 #对于某个考试相关的详情页，应该查看该考试相关的统计页面
@@ -29,33 +33,49 @@ class TeacherTermDetailView(TemplateView):
         }
 
 
+class TeacherCreateTermSuccessView(View):
+
+    def get(self, request, *args, **kwargs):
+        t = 'teacher_v2/create_term_success.html'
+        school_class = request.GET.get('school_class', '')
+        term = request.GET.get('term', '')
+
+        context = {
+            'school_class': school_class,
+            'term': term,
+        }
+
+        return render_to_response(t, context)
+
+
 class TeacherCreateTermView(View):
     #教师创建考试页面
     @login_required
     def post(self, request, *args, **kwargs):
-        t = 'teacher_v2/create_term_success.html'
         data = request.POST
         user = request.user
-        term = self.create_term(data=data)
-        self.create_term_teacher_ship(user=user, term=term)
+        teacher = Teacher.objects.get(id=user.id)
+        term = self.create_term(data=data, teacher=teacher)
+        self.create_term_teacher_ship(teacher=teacher, term=term)
         context = {
             "school_class": data.get('school_class', ''),
             "term": term.id
         }
-        return render_to_response(t, context)
+        return json_success_response(json_data=context)
 
-    def create_term(self, data, user):
+    def create_term(self, data, teacher):
         term_name = data.get('name', '')
         school_class = data.get('school_class', '')
-        subject = Teacher.objects.get(id=user.id).subject_id
+
+        subject = teacher.subject_id
         term_type = data.get('type', '')
 
         term = Term(name=term_name, type=term_type, subject_id=subject, school_class=school_class)
         term.save()
         return term
 
-    def create_term_teacher_ship(self, user, term):
-        teacher_term_ship = TeacherTermShip(teacher_id=user.id, term_id=term.id)
+    def create_term_teacher_ship(self, teacher, term):
+        teacher_term_ship = TeacherTermShip(teacher_id=teacher.id, term_id=term.id)
         teacher_term_ship.save()
 
     #处理获取填写考试信息的页面
@@ -63,22 +83,18 @@ class TeacherCreateTermView(View):
     def get(self, request, *args, **kwargs):
 
         template = 'teacher_v2/teacher_create_term.html'
-
-        user = request.user
-        classes = SchoolClassTeacherShip.objects.filter(teacher_id=user.id)
-
-        classes_json = map(lambda obj: obj.to_json(), classes)
+        teacher = request.GET.get('teacher', '')
         context = {
-            "classes": classes_json
+            "teacher": teacher
         }
         return render_to_response(template, context)
 
 
 #老师录入成绩的保存处理,处理成功返回200，跳转会考试管理的主页, 并且进行相关的统计操作
-class HandleStudentsGrade(View):
+class HandleStudentsGradeView(View):
     def post(self, request, *args, **kwargs):
         data = json.loads(request.body).get('data', '')
-        data = sorted(data, key=lambda x:x['grade'], reverse=True)
+        data = sorted(data, key=lambda x: x['grade'], reverse=True)
         term = request.POST.get('term', '')
         position = 1
         max_grade = data[0].get('grade', '')
@@ -96,7 +112,7 @@ class HandleStudentsGrade(View):
             sum += point
             position += 1
         self.statictics(sum=sum, pass_number=pass_number, max=max_grade, excellent_number=excellent_number, term=term)
-        return json_success_response(json_data={})
+        return json_success_response(json_data={"term": term})
 
     def statictics(self, sum, pass_number, excellent_number, term, max):
         term_statistics = TermStatistics(term_id=term, sum=sum, pass_number=pass_number, excellent_number=excellent_number, max=max)
@@ -108,10 +124,42 @@ class GetRecordStudentsGradeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         school_class = self.request.GET.get('school_class', '')
-
+        term = self.request.GET.get('term', '')
         context = {
-            "school_class": school_class
+            "school_class": school_class,
+            'term': term,
         }
         return RequestContext(self.request, context)
+
+
+class RecordGradeSuccessView(TemplateView):
+
+    template_name = 'teacher_v2/teacher_create_score_success.html'
+
+    def get_context_data(self, **kwargs):
+        term = self.request.GET.get('term')
+
+        context = {
+            "term": term
+        }
+
+        return RequestContext(self.request, context)
+
+
+class TermFilterByTypeView(View):
+
+    def get(self, request, *args, **kwargs):
+        t = 'teacher_v2/class_test_list.html'
+        type_list = Term.TEXT_LIST
+        type = int(request.GET.get('type', ''))
+        title = type_list[type][1]
+
+        context = {
+            "title": title,
+            "type": type,
+            "school_class": kwargs.get('id', '')
+        }
+
+        return render_to_response(t, context)
 
 

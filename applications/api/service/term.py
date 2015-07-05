@@ -22,6 +22,7 @@ class TeacherTermService(ServiceBase):
             "type": obj.term.type,
             "subject": obj.subject,
             "school_class": obj.term.school_class,
+            'time': obj.get_date
         }
 
 
@@ -37,7 +38,7 @@ class QuerysetStudentByTermService(ServiceBase):
         return {
             "id": obj.id,
             "username": obj.user.username,
-            'point': 0,
+            'grade': 0,
         }
 
 
@@ -52,8 +53,9 @@ class TermsQuerysetService(ServiceBase):
         return {
             "id": obj.id,
             "name": obj.name,
-            "subject": obj.subject,
-            "teacher": obj.created_by_id
+            "subject": obj.subject.name,
+            "teacher": obj.created_by_id,
+            "time": obj.get_date()
         }
 
 

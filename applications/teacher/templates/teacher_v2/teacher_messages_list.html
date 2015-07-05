@@ -8,37 +8,40 @@
     <script>
         window.teacher = "{{ teacher }}"
     </script>
-    <link rel="stylesheet" href="/static/css/index.css">
+    <link rel="stylesheet" href="/static/teacher_v1/css/index.css">
 </head>
+<body >
 {% verbatim %}
-<body ng-app="courseApp">
-
-	<div class="container" ng-controller="courseCtrl"> 
+    <div ng-app="informApp"  ng-controller="informController" ng-cloak>
+	<div class="container">
 		<div class="arrange">
 			<div class="listTime tabItem">
 				通知中心
 			</div>
 		</div>
 
-		<!-- 来源，时间 -->
-		<div class="contain" ng-repeat="msg in messages" ng-click="goDetails($event, msg)">
-			<div class="headFrom">
-				<span class="from floL">{{msg.type}}</span>
-				<span class="time floR">{{msg.created_time}}</span>
-			</div>
 
-			<!-- 通知内容部分 -->
-			<div class="content">
-				<a href="/teacher/message/{{ msg.id }}/">{{msg.message}}</a>
-			</div>
-		</div>
+		<!-- 来源，时间 -->
+            <div class="contain" ng-repeat="msg in messages" ng-click="goDetails($event, msg)">
+                <div class="headFrom">
+                    <span class="from floL">{{msg.type}}</span>
+                    <span class="time floR">{{msg.created_time}}</span>
+                </div>
+
+                <!-- 通知内容部分 -->
+                <div class="content">
+                    <a href="/teacher/message/{{ msg.id }}/">{{msg.content}}</a>
+                </div>
+            </div>
+        </div>
 	</div>
-    <script src="/static/js/angularJS/angular-1.3.0.js"></script>
-    <script type="text/javascript" src="/static/js/angularJs/angular-resource.min.js"></script>
-	<script src="/static/js/setRem.js"></script>
-	<script src="/static/js/controllers/teacher_inform_app.js"></script>
-    <script type="text/javascript" src="/static/js/services/teacher_request.js"></script>
+{% endverbatim %}
+    <script src="/static/teacher_v1/js/angularJS/angular.min.js"></script>
+    <script type="text/javascript" src="/static/teacher_v1/js/angularJs/angular-resource.min.js"></script>
+	<script src="/static/teacher_v1/js/setRem.js"></script>
+	<script src="/static/teacher_v1/js/controllers/teacher_inform_app.js"></script>
+    <script type="text/javascript" src="/static/teacher_v1/js/service/teacher_request.js"></script>
 
 </body>
-{% endverbatim %}
+
 </html>

@@ -11,7 +11,7 @@ class UeditorWidget(Textarea):
 
     class Media:
         css = {
-            "all": ("/static/css/admin-override.css", ),
+            "all": ("/static/teacher_v1/css/admin-override.css", ),
         }
 
     def __init__(self, attrs=None):

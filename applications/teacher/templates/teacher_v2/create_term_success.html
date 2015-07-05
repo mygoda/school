@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="static/css/index.css">
 	<link rel="stylesheet" href="static/css/resets.css">
 </head>
-<body>
+<body ng-app="recordGrade", ng-controller="recordController">
 	<div class="arrange">
 		<div class="listTime tabItem">
 			创建成功
@@ -21,7 +21,7 @@
 	</div>
 
 	<div class="starI">
-		<a href="#" ng-click="">开始录入成绩</a>
+		<a href="#" ng-click="record($event)">开始录入成绩</a>
 	</div>
     <script src="static/js/angularJS/angular-1.3.0.js"></script>
 	<script src="static/js/setRem.js"></script>

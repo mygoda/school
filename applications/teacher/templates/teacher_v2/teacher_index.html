@@ -5,11 +5,14 @@
 	<title>学生管理</title>
 	<meta name="format-detection" content="telephone=no">
 	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
-	<script src="/static/js/setRem.js"></script>
-	<script src="/static/js/controllers/controller.js"></script>
+    <script>
+        window.teacher = {{ id }}
+    </script>
+	<script src="/static/teacher_v1/js/setRem.js"></script>
+	<script src="/static/teacher_v1/js/controllers/controller.js"></script>
 
-	 <!--<link rel="stylesheet" href="/static/css/reset.css">-->
-	<link rel="stylesheet" href="/static/css/index.css">
+	 <!--<link rel="stylesheet" href="/static/teacher_v1/css/reset.css">-->
+	<link rel="stylesheet" href="/static/teacher_v1/css/index.css">
 </head>
 <body>
 	<!-- 个人信息部分开始 -->
@@ -35,13 +38,13 @@
 	<div class="funList">
 		<ul class="list ">
 			<li class="funItem">
-				<a href="schedules.html" class="link">
+				<a href="" class="link">
 					<img class="icon" src="/static/img/day.png" alt="我的课程">
 					<p class="name">我的课程</p>
 				</a>
 			</li>
 			<li class="funItem">
-				<a href="#" class="link">
+				<a href="/teacher/{{ id }}/classes/" class="link">
 					<img class="icon" src="/static/img/day.png" alt="我的课程">
 					<p class="name">我的班级</p>
 				</a>
@@ -71,13 +74,12 @@
 				</a>
 			</li>
 			<li class="funItem">
-				<a href="#" class="link">
+				<a href="/teacher/{{id}}/messages/" class="link">
 					<img class="icon" src="/static/img/day.png" alt="我的课程">
 					<p class="name">通知中心</p>
 				</a>
 			</li>
 		</ul>
 	</div>
-
 </body>
 </html>

@@ -4,7 +4,7 @@
 from __future__ import division, unicode_literals, print_function
 from django.contrib import admin
 
-from applications.teacher.models.teacher import Teacher, SchoolClassTeacherShip, SchoolClassMasterShip, TeacherTermShip
+from applications.teacher.models.teacher import Teacher, SchoolClassTeacherShip, SchoolClassMasterShip, TeacherTermShip, Term
 from applications.teacher.models.message import TeacherMessage
 from applications.teacher.models.schedule import TeacherSchedule
 from applications.teacher.models.schoolClass import SchoolClass
@@ -12,6 +12,10 @@ from applications.teacher.models.subjects import SubjectsTemplate
 
 
 class TeacherAdmin(admin.ModelAdmin):
+    pass
+
+
+class TermAdmin(admin.ModelAdmin):
     pass
 
 
@@ -50,3 +54,4 @@ admin.site.register(TeacherMessage, TeacherMessageAdmin)
 admin.site.register(TeacherSchedule, TeacherScheduleAdmin)
 admin.site.register(SchoolClass, SchoolClassAdmin)
 admin.site.register(SubjectsTemplate, SubjectsTemplateAdmin)
+admin.site.register(Term, TermAdmin)

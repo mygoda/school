@@ -16,7 +16,7 @@ class Students(models.Model):
     class Meta:
         app_label = 'students'
         db_table = 'students_students'
-        verbose_name = verbose_name_plural = "学生班级关系"
+        verbose_name = verbose_name_plural = "学生"
 
     user = models.ForeignKey(auth_user_model, verbose_name=u'学生', blank=True, null=True)
     school_class = models.ForeignKey(SchoolClass, verbose_name=u'班级', blank=True, null=True)

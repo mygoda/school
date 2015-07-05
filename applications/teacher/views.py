@@ -8,7 +8,7 @@ from django.views.generic import TemplateView, View
 from django.template import RequestContext
 from applications.students.models import Students
 from applications.students.models.evaluation import StudentEvaluation
-from applications.teacher.models.teacher import Teacher
+from applications.teacher.models.teacher import Teacher, Term
 from django.contrib.auth.decorators import login_required
 from libs.http import json_success_response
 
@@ -27,6 +27,7 @@ class TeacherIndexView(View):
             grade = 5
 
             context = {
+                'id': teacher.id,
                 "username": teacher.user.username,
                 "image": teacher.user.avatar,
                 "subject": teacher.subject.name,
@@ -56,7 +57,7 @@ class WriteToParentsView(TemplateView):
 
 #教师班级列表页
 class TeacherClassesView(TemplateView):
-    t = 'teacher_v2/teacher_class_all.html'
+    template_name = 'teacher_v2/teacher_class_all.html'
 
     def get_context_data(self, **kwargs):
 
@@ -74,6 +75,7 @@ class TeacherClassDetailView(View):
         t = 'teacher_v2/teacher_class_detail.html'
 
         school_class_id = kwargs.pop('id', '')
+
 
         context = {
             "school_class": school_class_id,

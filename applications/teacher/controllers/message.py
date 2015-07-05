@@ -11,7 +11,7 @@ class TeacherMessagesView(TemplateView):
     template_name = 'teacher_v2/teacher_messages_list.html'
 
     def get_context_data(self, **kwargs):
-        teacher = self.request.GET.get('teacher', '')
+        teacher = kwargs.pop('id', '')
         context = {
             "teacher": teacher
         }

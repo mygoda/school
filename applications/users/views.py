@@ -8,7 +8,7 @@ from django.views.generic import TemplateView
 
 
 class UserLoginTemplateView(TemplateView):
-    template_name = "user/login.html"
+    template_name = "user/teacher_login.html"
 
 
 class UserLogoutTemplateView(TemplateView):

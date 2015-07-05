@@ -36,10 +36,10 @@ WARNING 2015-06-04 14:39:22,592 base 59888 4456271872 /Users/xu/.virtualenvs/fit
 WARNING 2015-06-04 14:39:22,607 base 59888 4447596544 /Users/xu/.virtualenvs/fitness/lib/python2.7/site-packages/django/core/handlers/base.py 145 get_response Not Found: /static/meeting_v1/js/directives/meeting_list_dirc.js
 WARNING 2015-06-04 14:39:22,622 base 59888 4447596544 /Users/xu/.virtualenvs/fitness/lib/python2.7/site-packages/django/core/handlers/base.py 145 get_response Not Found: /static/meeting_v1/js/directives/filter_dirc.js
 WARNING 2015-06-04 14:39:29,668 base 59888 4447596544 /Users/xu/.virtualenvs/fitness/lib/python2.7/site-packages/django/core/handlers/base.py 145 get_response Not Found: /meetings/1/survey/
-WARNING 2015-06-04 14:39:29,702 base 59888 4452065280 /Users/xu/.virtualenvs/fitness/lib/python2.7/site-packages/django/core/handlers/base.py 145 get_response Not Found: /static/js/setRem.js
+WARNING 2015-06-04 14:39:29,702 base 59888 4452065280 /Users/xu/.virtualenvs/fitness/lib/python2.7/site-packages/django/core/handlers/base.py 145 get_response Not Found: /static/teacher_v1/js/setRem.js
 WARNING 2015-06-04 14:39:29,704 base 59888 4464685056 /Users/xu/.virtualenvs/fitness/lib/python2.7/site-packages/django/core/handlers/base.py 145 get_response Not Found: /static/images/pic-error-image.png
-WARNING 2015-06-04 14:39:29,707 base 59888 4456271872 /Users/xu/.virtualenvs/fitness/lib/python2.7/site-packages/django/core/handlers/base.py 145 get_response Not Found: /static/css/common/error.css
-WARNING 2015-06-04 14:39:29,724 base 59888 4460478464 /Users/xu/.virtualenvs/fitness/lib/python2.7/site-packages/django/core/handlers/base.py 145 get_response Not Found: /static/css/common/reset.css
+WARNING 2015-06-04 14:39:29,707 base 59888 4456271872 /Users/xu/.virtualenvs/fitness/lib/python2.7/site-packages/django/core/handlers/base.py 145 get_response Not Found: /static/teacher_v1/css/common/error.css
+WARNING 2015-06-04 14:39:29,724 base 59888 4460478464 /Users/xu/.virtualenvs/fitness/lib/python2.7/site-packages/django/core/handlers/base.py 145 get_response Not Found: /static/teacher_v1/css/common/reset.css
 WARNING 2015-06-04 14:39:29,728 base 59888 4474933248 /Users/xu/.virtualenvs/fitness/lib/python2.7/site-packages/django/core/handlers/base.py 145 get_response Not Found: /static/images/pic-error-text.png
 WARNING 2015-06-04 14:39:29,756 base 59888 4447596544 /Users/xu/.virtualenvs/fitness/lib/python2.7/site-packages/django/core/handlers/base.py 145 get_response Not Found: /static/images/pic-error-image.png
 WARNING 2015-06-04 14:39:33,516 base 59888 4452065280 /Users/xu/.virtualenvs/fitness/lib/python2.7/site-packages/django/core/handlers/base.py 145 get_response Not Found: /static/meeting_v1/js/setRem.js
