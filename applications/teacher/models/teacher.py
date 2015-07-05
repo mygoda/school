@@ -59,7 +59,6 @@ class Term(models.Model):
     type = models.SmallIntegerField(u'考试类型', max_length=128, choices=TEXT_LIST, default=NORMAL_TEST)
     subject = models.ForeignKey(SubjectsTemplate, verbose_name=u'科目', null=True, blank=True)
     school_class = models.ForeignKey(SchoolClass, verbose_name=u'班级', null=True, blank=True)
-    created_by = models.ForeignKey(Teacher, verbose_name=u'创建者', blank=True, null=True)
 
     created_at = models.DateTimeField(u'创建时间', default=datetime_now(), blank=True, null=True)
 
@@ -83,7 +82,7 @@ class SchoolClassTeacherShip(models.Model):
 
 
     def __unicode__(self):
-        return unicode(self.id)
+        return unicode(self.teacher.user.username)
 
     def to_json(self):
         return {
@@ -116,7 +115,7 @@ class TeacherTermShip(models.Model):
     created_at = models.DateTimeField(u'创建时间', blank=True, null=True, default=datetime_now())
 
     def __unicode__(self):
-        return self.id
+        return unicode(self.teacher.user.username)
 
     @property
     def get_date(self):

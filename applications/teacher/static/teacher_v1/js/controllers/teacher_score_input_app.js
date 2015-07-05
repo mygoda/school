@@ -17,17 +17,22 @@
                 }
     _getData();
 
-    _params = {
-        term: window.term,
-        data: $scope.students
-    }
 
-    student_grade.post(_params).success(function (data, status) {
-                        if (status == 200) {
-                            var term = data.data.term;
-                            $window.location.href = '/teacher/record/grade/success/?term' + term;
-                        }
-                    })
+    $scope.record = function($event){
+        $event.preventDefault();
+
+        _params = {
+            term: window.term,
+            data: $scope.students,
+        };
+
+        student_grade.post(_params).success(function (data, status) {
+                            if (status == 200) {
+                                var term = data.data.term;
+                                $window.location.href = '/teacher/record/grade/success/?term=' + term;
+                            }
+                        });
+    };
 
  	
  }]);

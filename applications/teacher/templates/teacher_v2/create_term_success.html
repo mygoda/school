@@ -6,12 +6,12 @@
 	<meta name="format-detection" content="telephone=no">
 	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
     <script>
-        window.school_class = "{{ school_class }}"
-        window.term = "{{ term }}"
+        window.school_class = "{{ school_class }}";
+        window.term = "{{ term }}";
     </script>
 
-	<link rel="stylesheet" href="static/css/index.css">
-	<link rel="stylesheet" href="static/css/resets.css">
+	<link rel="stylesheet" href="/static/teacher_v1/css/index.css">
+	<link rel="stylesheet" href="/static/teacher_v1/css/resets.css">
 </head>
 <body ng-app="recordGrade", ng-controller="recordController">
 	<div class="arrange">
@@ -21,10 +21,10 @@
 	</div>
 
 	<div class="starI">
-		<a href="#" ng-click="record($event)">开始录入成绩</a>
+		<a href="/teacher/record/grade/?school_class={{school_class}}&term={{term}}" ng-click="record($event)">开始录入成绩</a>
 	</div>
-    <script src="static/js/angularJS/angular-1.3.0.js"></script>
-	<script src="static/js/setRem.js"></script>
-	<script src="static/js/controllers/teacher_score_jump_app.js"></script>
+    <script src="/static/teacher_v1/js/angularJS/angular.min.js"></script>
+	<script src="/static/teacher_v1/js/setRem.js"></script>
+	<script src="/static/teacher_v1/js/controllers/teacher_score_jump_app.js"></script>
 </body>
 </html>

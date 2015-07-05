@@ -49,12 +49,11 @@ class TeacherCreateTermSuccessView(View):
 
 
 class TeacherCreateTermView(View):
-    #教师创建考试页面
-    @login_required
+
     def post(self, request, *args, **kwargs):
-        data = request.POST
-        user = request.user
-        teacher = Teacher.objects.get(id=user.id)
+        data = json.loads(request.body)
+        print(data)
+        teacher = data.get('teacher', '')
         term = self.create_term(data=data, teacher=teacher)
         self.create_term_teacher_ship(teacher=teacher, term=term)
         context = {
@@ -66,20 +65,18 @@ class TeacherCreateTermView(View):
     def create_term(self, data, teacher):
         term_name = data.get('name', '')
         school_class = data.get('school_class', '')
-
-        subject = teacher.subject_id
+        subject = Teacher.objects.get(id=teacher).subject_id
         term_type = data.get('type', '')
 
-        term = Term(name=term_name, type=term_type, subject_id=subject, school_class=school_class)
+        term = Term(name=term_name, type=term_type, subject_id=subject, school_class_id=school_class)
         term.save()
         return term
 
     def create_term_teacher_ship(self, teacher, term):
-        teacher_term_ship = TeacherTermShip(teacher_id=teacher.id, term_id=term.id)
+        teacher_term_ship = TeacherTermShip(teacher_id=teacher, term_id=term.id)
         teacher_term_ship.save()
 
-    #处理获取填写考试信息的页面
-    @login_required
+
     def get(self, request, *args, **kwargs):
 
         template = 'teacher_v2/teacher_create_term.html'
@@ -93,16 +90,17 @@ class TeacherCreateTermView(View):
 #老师录入成绩的保存处理,处理成功返回200，跳转会考试管理的主页, 并且进行相关的统计操作
 class HandleStudentsGradeView(View):
     def post(self, request, *args, **kwargs):
-        data = json.loads(request.body).get('data', '')
-        data = sorted(data, key=lambda x: x['grade'], reverse=True)
-        term = request.POST.get('term', '')
+        body = json.loads(request.body)
+        data = body.get('data', '')
+        data = sorted(data, key=lambda x: x['grades'], reverse=True)
+        term = body.get('term', '')
         position = 1
-        max_grade = data[0].get('grade', '')
+        max_grade = int(data[0].get('grades', ''))
         pass_number = 0
         excellent_number = 0
         sum = 0
         for item in data:
-            point = item.get('grade', '')
+            point = int(item.get('grades', ''))
             grade = StudentGrade(student_id=item.get('id', ''), term_id=term, grade=point, position=position)
             grade.save()
             if point > 60:

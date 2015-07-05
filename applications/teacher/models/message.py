@@ -28,12 +28,11 @@ class TeacherMessage(models.Model):
     content = models.CharField(u'通知内容', max_length=2578, null=True, blank=True)
     teacher = models.ForeignKey(Teacher, verbose_name=u'接受者', null=True, blank=True)
     type = models.SmallIntegerField(u'类型', default=SCHOOL, choices=MESSAGE_TYPE)
-    created_by = models.ForeignKey(auth_user_model, verbose_name=u'创建人', blank=True, null=True)
 
     created_at = models.DateTimeField(u'创建时间', blank=True, null=True, default=datetime_now())
 
     def __unicode__(self):
-        return unicode(self.created_by)
+        return unicode(self.teacher.user.username)
 
     @property
     def get_date(self):

@@ -52,7 +52,7 @@
         }])
 
         .factory('student_grade', ['requestHelper', function(requestHelper){
-            var _baseUrl = '/api/teacher/class/:school_class_id/students';
+            var _baseUrl = '/api/teacher/class/:school_class_id/students/';
                 _baseUrl2 = '/teacher/handle/grade/'
             return {
                 get: function(id){

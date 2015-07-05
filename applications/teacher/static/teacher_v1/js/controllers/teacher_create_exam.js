@@ -10,8 +10,10 @@
 	            
 var app = angular.module('components', ['teacher.requestSvc']);
 
-app.controller('ngSelect', ['$scope', 'classes',  function($scope, classes) {
+app.controller('ngSelect', ['$scope', 'classes', '$window', function($scope, classes, $window) {
 
+    $scope.termData = {
+                };
 	var examType = $scope.examType = {};
 	examType.optionsData = [
 				{id : 0, name : "平时测验"},
@@ -42,20 +44,23 @@ app.controller('ngSelect', ['$scope', 'classes',  function($scope, classes) {
                 }
     _getData();
 
-    _params = {
-        school_class: $scope.classId,
-        type: $scope.typeId,
-        name: $scope.term_name,
-    }
-
     $scope.addTerm = function($event){
+        $event.preventDefault();
+
+        _params = {
+        school_class: $scope.termData.class,
+        type: $scope.termData.type,
+        name: $scope.termData.name,
+        teacher: window.teacher,
+        };
+
         classes.post(_params).success(function (data, status) {
                         if (status == 200) {
                             var school_class = data.data.school_class;
-                            var term = data.data.term
-                            $window.location.href = "/teacher/create/term/success/?school_class" + school_class +"&term=" + term;
+                            var term = data.data.term;
+                            $window.location.href = "/teacher/create/term/success/?school_class=" + school_class +"&term=" + term;
                   }
-             })
-    }
+             });
+    };
 
 }]);
