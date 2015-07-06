@@ -55,7 +55,6 @@ class TermsQuerysetService(ServiceBase):
             "id": obj.id,
             "name": obj.name,
             "subject": obj.subject.name,
-            "teacher": obj.created_by_id,
             "time": obj.get_date()
         }
 

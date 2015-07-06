@@ -28,9 +28,12 @@ class StudentsGradeService(ServiceBase):
 
     obj_name = 'student_grade'
 
+    order_by = '-grade'
+
     def obj_to_json(self, obj):
         return {
             "student": obj.student_id,
+            "name": obj.student.user.username,
             "term": obj.term_id,
             "grade": obj.grade,
             "position": obj.position,

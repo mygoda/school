@@ -17,11 +17,12 @@ class TermStatistics(models.Model):
     max = models.IntegerField(u'最高分', null=True, blank=True)
     pass_number = models.IntegerField(u'及格人数', null=True, blank=True)
     excellent_number = models.IntegerField(u'优秀人数', null=True, blank=True)
+    average = models.IntegerField(u'平均分', null=True, blank=True)
 
     created_at = models.DateTimeField(u'创建时间', blank=True, null=True, default=datetime_now())
 
     def __unicode__(self):
-        return self.id
+        return unicode(self.id)
 
     def to_json(self):
         return {
@@ -30,4 +31,5 @@ class TermStatistics(models.Model):
             "max": self.max,
             "pass_number": self.pass_number,
             "excellent_number": self.excellent_number,
+            'average': self.average,
         }

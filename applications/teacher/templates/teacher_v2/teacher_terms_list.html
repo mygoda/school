@@ -21,9 +21,11 @@
     {% verbatim %}
 	<div class="courseWrap" ng-app="courseApp" ng-controller="courseCtrl">
 		<div class="courseList" ng-repeat="term in terms">
-			<p class="title">{{term.grade}}年{{term.team}}班</p>
-			<span class="floL"><a href="#">{{term.name}}</a></span>
-			<span class="floR"><a href="#">{{sub.time}}</a></span>
+			<a href="/statistics/term/{{ term.id }}/">
+            <p class="title">{{term.grade}}年{{term.team}}班</p>
+			<span class="floL">{{term.name}}</span>
+			<span class="floR">{{term.time}}</span>
+            </a>
 		</div>
 	</div>
     {% endverbatim %}

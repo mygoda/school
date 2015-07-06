@@ -65,6 +65,17 @@
             }
         }])
 
+        .factory('grades', ['requestHelper', function(requestHelper){
+            var _baseUrl = '/api/term/:term_id/students/grade/';
+
+            return {
+                get: function(id){
+                    return requestHelper.get(_baseUrl, {term_id:id},{});
+                }
+            }
+        }])
+
+
         .factory('term', ['requestHelper', function(requestHelper){
             var _baseUrl = '/api/teacher/:teacher_id/terms/';
 

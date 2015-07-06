@@ -25,6 +25,10 @@ CLASS_ID = "(?P<school_class_id>[0-9]+)"
 
 TYPE = "(?P<type>[0-9]+)"
 
+TERM_ID = "(?P<term_id>[0-9]+)"
+
+
+
 
 
 

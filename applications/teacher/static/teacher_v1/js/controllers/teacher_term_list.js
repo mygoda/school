@@ -1,6 +1,6 @@
 var app = angular.module("courseApp", ['teacher.requestSvc']);
 
-app.controller('courseCtrl', ['$scope', 'term', function($scope, term){
+app.controller('courseCtrl', ['$scope', 'term', '$window', function($scope, term){
 
 //	$scope.terms = [
 //					{"subject": '计算机', "name": '第一次模拟考试', "time": '2015-9-8'},
@@ -17,6 +17,12 @@ app.controller('courseCtrl', ['$scope', 'term', function($scope, term){
                     })
                 }
     _getData();
+
+    $scope.goStatistics = function($event, term, $window){
+        $event.preventDefault();
+
+        $window.location.href = '/statistics/term/'+ term.id +'/';
+    }
 
 
 }]);

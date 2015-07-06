@@ -109,7 +109,8 @@ class HandleStudentsGradeView(View):
                 excellent_number += 1
             sum += point
             position += 1
-        self.statictics(sum=sum, pass_number=pass_number, max=max_grade, excellent_number=excellent_number, term=term)
+        average = sum/len(data)
+        self.statictics(sum=sum, pass_number=pass_number, max=max_grade, excellent_number=excellent_number, term=term, average=average)
         return json_success_response(json_data={"term": term})
 
     def statictics(self, sum, pass_number, excellent_number, term, max):

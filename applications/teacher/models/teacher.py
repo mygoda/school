@@ -102,6 +102,8 @@ class SchoolClassMasterShip(models.Model):
 
     created_at = models.DateTimeField(u'创建时间', blank=True, null=True, default=datetime_now())
 
+    def __unicode__(self):
+        return unicode(self.master.user.username)
 
 class TeacherTermShip(models.Model):
     class Meta:

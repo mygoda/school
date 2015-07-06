@@ -19,4 +19,5 @@
     $scope.goDetails = function($event, item){
                     $event.preventDefault();
                     $window.location.href = "去往学生详情页";
+ }
  }]);

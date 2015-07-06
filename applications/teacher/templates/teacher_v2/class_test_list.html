@@ -24,11 +24,13 @@
     {% verbatim %}
     <div ng-app="examApp" ng-controller="examController" ng-cloak>
         <div class="tesWrap" ng-repeat="test in terms">
-            <div class="tesItem">
-                <p class="testName floL">{{test.name}}</p>
-                <p class="testTime floR">{{test.time}}</p>
-            </div>
-            <a>{{test.subject}}</a>
+
+                <div class="tesItem">
+                    <p class="testName floL">{{test.name}}</p>
+                    <p class="testTime floR">{{test.time}}</p>
+                </div>
+                <a href="/statistics/term/{{ test.id }}/">{{test.subject}}</a>
+
         </div>
     </div>
     {% endverbatim %}
