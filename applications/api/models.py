@@ -4,9 +4,14 @@
 from __future__ import division, unicode_literals, print_function
 from django.db import models
 from django.template.loader import render_to_string
+from libs.hashs import md5
 from libs.sms import send_sms
 from libs.uuids import get_code
 from libs.datetimes import datetime_now
+from django.conf import settings
+
+
+auth_user_model = getattr(settings, 'AUTH_USER_MODEL', 'user.User')
 
 import logging
 logger = logging.getLogger(__name__)
@@ -75,3 +80,33 @@ class VerifyPhone(models.Model):
         logger.info("send verify code to phone %s : %s" % (self.phone, content))
         r, status = send_sms(self.phone, content)
         return status
+
+
+class UserPassword(models.Model):
+    class Meta:
+        app_label = u"api"
+        db_table = u'api_user_password'
+        verbose_name = verbose_name_plural = u"用户密码"
+
+    phone = models.CharField(u"手机号", max_length=32, unique=True)
+    password = models.CharField(u'密码', max_length=40, blank=True, null=True)
+
+    created_at = models.DateTimeField(u'创建时间', blank=True, null=True, default=datetime_now())
+
+    def __unicode__(self):
+        return unicode(self.phone)
+
+    @classmethod
+    def check_password(cls, password, phone):
+        try:
+            instance = cls.objects.get(phone=phone)
+            return instance.password == md5(password)
+        except:
+            return False
+
+    def save(self, *args, **kwargs):
+        self.password = md5(self.password)
+        super(UserPassword, self).save(*args, **kwargs)
+
+
+

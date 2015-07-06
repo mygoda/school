@@ -18,6 +18,7 @@ class CustomIndexDashboard(Dashboard):
             collapsible=True,
             models=(
                 'applications.users.models.User',
+                'applications.api.models.UserPassword',
             )
         ))
 

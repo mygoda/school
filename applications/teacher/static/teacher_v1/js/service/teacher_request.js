@@ -36,6 +36,17 @@
             }
         }])
 
+        .factory('login', ['requestHelper', function(requestHelper){
+            var _baseUrl = '/api/teacher/login/';
+
+
+            return {
+                    post: function(data){
+                        return requestHelper.post(_baseUrl, {}, data);
+                }
+            }
+        }])
+
         .factory('classes', ['requestHelper', function(requestHelper){
             var _baseUrl = '/api/teacher/:teacher_id/classes/';
                 _baseUrl2 = '/teacher/create/term/';
@@ -150,78 +161,6 @@
             return {
                 get: function(params){
                     return requestHelper.get(_baseUrl, {}, params);
-                }
-            }
-        }])
-
-        .factory('login', ['requestHelper', function(requestHelper){
-            var _baseUrl = '/api/users/login/';
-
-            return {
-                post: function(data){
-                    return requestHelper.post(_baseUrl, {}, data);
-                }
-            }
-        }])
-
-        .factory('verifyCode', ['requestHelper', function(requestHelper){
-            var _baseUrl = '/api/send/verify/';
-
-            return {
-                post: function(data){
-                    return requestHelper.post(_baseUrl, {}, data);
-                }
-            }
-        }])
-
-        //获取门票信息
-        .factory('tickets', ['requestHelper', function(requestHelper){
-            var _baseUrl = '/api/tickets/:id/';
-
-            return {
-                get: function(id, params){
-                    return requestHelper.get(_baseUrl, {id:id}, params);
-                }
-            }
-        }])
-
-        //修改门票绑定用户信息
-        .factory('ticketsModify', ['requestHelper', function(requestHelper){
-            var _baseUrl = '/api/tickets/:id/modify/';
-
-            return {
-                post: function (id, data) {
-                    return requestHelper.post(_baseUrl, {id: id}, data);
-                }
-            }
-        }])
-
-        .factory('ticketSchedule', ['requestHelper', function(requestHelper){
-            var _baseUrl = '/api/tickets/:id/schedules/';
-
-            return {
-                get: function(id, params){
-                    return requestHelper.get(_baseUrl,{id:id}, params);
-                }
-            }
-        }])
-
-        .factory('ticketOrder', ['requestHelper', function(requestHelper){
-            var _baseUrl = '/api/tickets/:id/order/';
-
-            return {
-                post: function(id,data){
-                    return requestHelper.post(_baseUrl, {id:id}, data);
-                }
-            }
-        }])
-
-        .factory('cancelOrder', ['requestHelper', function(requestHelper){
-            var _baseUrl = '/api/tickets/:id/order/cancel/';
-
-            return {
-                post: function(id, data){
-                    return requestHelper.post(_baseUrl, {id:id}, data);
                 }
             }
         }])

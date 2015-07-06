@@ -19,7 +19,7 @@
 		</div>
 	</div>
     {% verbatim %}
-	<div class="courseWrap" ng-app="courseApp" ng-controller="courseCtrl">
+	<div class="courseWrap" ng-app="courseApp" ng-controller="courseCtrl" ng-cloak>
 		<div class="courseList" ng-repeat="term in terms">
 			<a href="/statistics/term/{{ term.id }}/">
             <p class="title">{{term.grade}}年{{term.team}}班</p>

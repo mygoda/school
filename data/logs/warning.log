@@ -42,3 +42,12 @@ WARNING 2015-07-05 23:05:59,704 base 30645 4515753984 /Users/xu/.virtualenvs/mee
 WARNING 2015-07-06 09:49:03,812 base 31263 4337037312 /Users/xu/.virtualenvs/meeting/lib/python2.7/site-packages/django/core/handlers/base.py 145 get_response Not Found: /api/class/1/students/
 WARNING 2015-07-06 13:57:44,682 base 32131 4559413248 /Users/xu/.virtualenvs/meeting/lib/python2.7/site-packages/django/core/handlers/base.py 145 get_response Not Found: /favicon.ico
 WARNING 2015-07-06 14:07:26,417 base 32183 4435816448 /Users/xu/.virtualenvs/meeting/lib/python2.7/site-packages/django/core/handlers/base.py 145 get_response Not Found: /api/term/1/students/grade/
+WARNING 2015-07-06 20:22:04,483 base 33605 4351844352 /Users/xu/.virtualenvs/meeting/lib/python2.7/site-packages/django/core/handlers/base.py 145 get_response Not Found: /teacher/login、
+WARNING 2015-07-06 20:22:08,451 base 33605 4347375616 /Users/xu/.virtualenvs/meeting/lib/python2.7/site-packages/django/core/handlers/base.py 145 get_response Not Found: /teacher/login/
+WARNING 2015-07-06 20:22:15,580 base 33605 4351844352 /Users/xu/.virtualenvs/meeting/lib/python2.7/site-packages/django/core/handlers/base.py 145 get_response Not Found: /teachers/login/
+WARNING 2015-07-06 20:24:29,486 base 33605 4360257536 /Users/xu/.virtualenvs/meeting/lib/python2.7/site-packages/django/core/handlers/base.py 145 get_response Not Found: /users/login/static/js/angularJS/angular.min.js
+WARNING 2015-07-06 20:25:02,516 base 33605 4347375616 /Users/xu/.virtualenvs/meeting/lib/python2.7/site-packages/django/core/handlers/base.py 145 get_response Not Found: /api/users/login/
+WARNING 2015-07-06 22:09:01,550 base 34665 4567887872 /Users/xu/.virtualenvs/meeting/lib/python2.7/site-packages/django/core/handlers/base.py 145 get_response Not Found: /login/error/
+WARNING 2015-07-06 22:10:16,868 base 34680 4419588096 /Users/xu/.virtualenvs/meeting/lib/python2.7/site-packages/django/core/handlers/base.py 145 get_response Not Found: /login/error/
+WARNING 2015-07-06 22:11:07,459 base 34693 4568576000 /Users/xu/.virtualenvs/meeting/lib/python2.7/site-packages/django/core/handlers/base.py 145 get_response Not Found: /login/error/
+WARNING 2015-07-06 22:11:46,295 base 34701 4378877952 /Users/xu/.virtualenvs/meeting/lib/python2.7/site-packages/django/core/handlers/base.py 145 get_response Not Found: /login/error/

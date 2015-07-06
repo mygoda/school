@@ -20,7 +20,7 @@
 		</div>
 	</div>
     {% verbatim %}
-    <div ng-app="scoreInputApp" ng-controller="scoreInputController">
+    <div ng-app="scoreInputApp" ng-controller="scoreInputController" ng-cloak>
         <div class="score" ng-repeat="stu in students">
             <label class="label" for="student">{{stu.username}}</label>
             <input ng-model="stu.grades" type="text" value="{{stu.grade}}" class="input input-small" id="score">
