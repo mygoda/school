@@ -61,7 +61,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     def get_user_by_phone(cls, phone):
         users = User.objects.filter(phone=phone)
         try:
-            # 返回第一个会员
+            # 返回第一个用户
             return users[0]
         except:
             return None
